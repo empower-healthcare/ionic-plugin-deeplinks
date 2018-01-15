@@ -49,6 +49,8 @@ var IonicDeeplink = {
           data.url = decodeURIComponent(tmp['af_dp']);
           var parts = data.url.split('://');
           if(parts.length >= 2) {
+console.log(parts[0]);
+console.log(parts[1]);
             data.scheme = parts[0];
             var parts2 = parts[1].split('/');
             if(parts2.length >= 2) {
@@ -61,6 +63,7 @@ var IonicDeeplink = {
                 }
                 cnt++;
               }
+console.log(realPath);
             }
           }
         }
