@@ -41,6 +41,8 @@ var IonicDeeplink = {
       var realPath, pathData, matchedParams, args, finalArgs, didRoute;
 
       realPath = '';
+
+      // AppsFlyer OneLink
       if((data.host == 'bun2carddev.onelink.me') || (data.host == 'bun2card.onelink.me')) {
         var tmp = self._queryToObject(data.url);
         if(tmp['af_dp'] != undefined) {
@@ -63,6 +65,7 @@ var IonicDeeplink = {
           }
         }
       }
+
       if(realpath.length == 0) {
         realPath = self._getRealPath(data);
       }
