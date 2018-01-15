@@ -54,14 +54,12 @@ console.log(parts[1]);
             data.scheme = parts[0];
             var parts2 = parts[1].split('/');
             if(parts2.length >= 2) {
-              var cnt = 0;
-              for(var part in parts2) {
-                if(cnt == 0) {
-                  data.host = part;
+              for(var i = 0; i < parts2.length; i++) {
+                if(i == 0) {
+                  data.host = parts2[i];
                 } else {
-                  realPath += '/' + part;
+                  realPath += '/' + parts2[i];
                 }
-                cnt++;
               }
 console.log(realPath);
             }
