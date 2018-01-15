@@ -53,7 +53,7 @@ var IonicDeeplink = {
             var parts2 = parts[1].split('/');
             if(parts2.length >= 2) {
               var cnt = 0;
-              for(var part int parts2) {
+              for(var part in parts2) {
                 if(cnt == 0) {
                   data.host = part;
                 } else {
