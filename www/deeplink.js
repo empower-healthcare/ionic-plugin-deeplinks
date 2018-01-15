@@ -41,16 +41,15 @@ var IonicDeeplink = {
       var realPath, pathData, matchedParams, args, finalArgs, didRoute;
 
       if((data.host == 'bun2carddev.onelink.me') || (data.host == 'bun2card.onelink.me')) {
-        var tmp = self._queryToObject(data.url)
-console.log(tmp);
-        realPath = decodeURI(tmp['af_dp']);
+        var tmp = self._queryToObject(data.url);
+console.log(tmp['af_dp']);
+        realPath = decodeURIComponent(tmp['af_dp']);
 console.log(realPath);
         data.url = realPath;
       } else {
         realPath = self._getRealPath(data);
       }
       args = self._queryToObject(data.url)
-console.log(args);
 
       for(var targetPath in paths) {
         pathData = paths[targetPath];
