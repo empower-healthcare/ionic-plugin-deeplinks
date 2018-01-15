@@ -45,23 +45,20 @@ var IonicDeeplink = {
       // AppsFlyer OneLink
       if((data.host == 'bun2carddev.onelink.me') || (data.host == 'bun2card.onelink.me')) {
         var tmp = self._queryToObject(data.url);
-        if(tmp['af_dp'] != undefined) {
+        if(typeof tmp['af_dp'] != 'undefined') {
           data.url = decodeURIComponent(tmp['af_dp']);
-          var parts = data.url.split('://');
-          if(parts.length >= 2) {
-console.log(parts[0]);
-console.log(parts[1]);
-            data.scheme = parts[0];
-            var parts2 = parts[1].split('/');
-            if(parts2.length >= 2) {
-              for(var i = 0; i < parts2.length; i++) {
+          var tmp2 = data.url.split('://');
+          if(tmp2.length >= 2) {
+            data.scheme = tmp2[0];
+            var tmp3 = tmp2[1].split('/');
+            if(tmp3.length >= 2) {
+              for(var i = 0; i < tmp3.length; i++) {
                 if(i == 0) {
-                  data.host = parts2[i];
+                  data.host = tmp3[i];
                 } else {
-                  realPath += '/' + parts2[i];
+                  realPath += '/' + tmp3[i];
                 }
               }
-console.log(realPath);
             }
           }
         }
