@@ -40,16 +40,33 @@ var IonicDeeplink = {
       console.log('On deep link', data);
       var realPath, pathData, matchedParams, args, finalArgs, didRoute;
 
+      realPath = '';
       if((data.host == 'bun2carddev.onelink.me') || (data.host == 'bun2card.onelink.me')) {
         var tmp = self._queryToObject(data.url);
-        realPath = decodeURIComponent(tmp['af_dp']);
-        data.url = realPath;
-      } else {
+        if(tmp['af_dp'] != undefined) {
+          data.url = decodeURIComponent(tmp['af_dp']);
+          var parts = data.url.split('://');
+          if(parts.length >= 2) {
+            data.scheme = parts[0];
+            var parts2 = parts[1].split('/');
+            if(parts2.length >= 2) {
+              var cnt = 0;
+              for(var part int parts2) {
+                if(cnt == 0) {
+                  data.host = part;
+                } else {
+                  realPath += '/' + part;
+                }
+                cnt++;
+              }
+            }
+          }
+        }
+      }
+      if(realpath.length == 0) {
         realPath = self._getRealPath(data);
       }
       args = self._queryToObject(data.url)
-console.log(data.url);
-console.log(realPath);
 
       for(var targetPath in paths) {
         pathData = paths[targetPath];
