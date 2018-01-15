@@ -88,6 +88,17 @@
           </array>
         </config-file>
 
+        <config-file target="*/Entitlements-Debug.plist" parent="com.apple.developer.associated-domains">
+          <array>
+            <string>applinks:bun2carddev.onelink.me</string>
+          </array>
+        </config-file>
+        <config-file target="*/Entitlements-Release.plist" parent="com.apple.developer.associated-domains">
+          <array>
+            <string>applinks:bun2card.onelink.me</string>
+          </array>
+        </config-file>
+
         <source-file src="src/ios/AppDelegate+IonicDeeplink.m" />
         <header-file src="src/ios/IonicDeeplinkPlugin.h" />
         <source-file src="src/ios/IonicDeeplinkPlugin.m" />
