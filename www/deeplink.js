@@ -44,11 +44,13 @@ var IonicDeeplink = {
 
       // AppsFlyer OneLink
       if((data.host == 'bun2carddev.onelink.me') || (data.host == 'bun2card.onelink.me')) {
+        var needMakeDeeplink = true;
         var tmp = self._queryToObject(data.url);
         if(typeof tmp['af_dp'] != 'undefined') {
           data.url = decodeURIComponent(tmp['af_dp']);
           var tmp2 = data.url.split('://');
           if(tmp2.length >= 2) {
+            needMakeDeeplink = false;
             data.scheme = tmp2[0];
             var tmp3 = tmp2[1].split('/');
             if(tmp3.length >= 2) {
@@ -57,6 +59,28 @@ var IonicDeeplink = {
                   data.host = tmp3[i];
                 } else {
                   realPath += '/' + tmp3[i];
+                }
+              }
+            }
+          }
+        }
+        if(needMakeDeeplink) {
+          if(typeof tmp['pid'] != 'undefined') {
+            data.url = 'bun2card://app/onelink/campaign/' + tmp['pid'];
+            if(typeof tmp['c'] != 'undefined') {
+              data.url += '/' + tmp['c'];
+            }
+            var tmp2 = data.url.split('://');
+            if(tmp2.length >= 2) {
+              data.scheme = tmp2[0];
+              var tmp3 = tmp2[1].split('/');
+              if(tmp3.length >= 2) {
+                for(var i = 0; i < tmp3.length; i++) {
+                  if(i == 0) {
+                    data.host = tmp3[i];
+                  } else {
+                    realPath += '/' + tmp3[i];
+                  }
                 }
               }
             }
